@@ -13,7 +13,6 @@ public class MainMain {
 	}
 	
 	private static String getPopularWord(String str) {
-		
 		/** 1.use String split() to convert sentence into an array which contains words by using 'white spaces' to define 'what a word is',
 			\\s+ is regex for 'white space'. Here we say, anything between a 'white space' is a word. **/
 		String[] words = str.split("\\s+"); 
@@ -26,7 +25,6 @@ public class MainMain {
 				 validWords.add(words[i]);
 			 }	
 		}
-		
 		/** 3. Time to count the number of occurrences to determine the most popular word. For this, we use HashMaps. The map get(key) function
 		 * 	   asks you to provide the key, so it can return the value. If there is no current mapping for the 'key', it returns NULL.
 		 * 	   Also, duplicate keys are not allowed in Java Maps, hence perfect for counting number of occurrences (thru values).**/
@@ -35,34 +33,28 @@ public class MainMain {
 			Integer ctr = occurrences.get(word);
 			if(ctr == null) {
 				ctr = 0;
-			}
-				
-			
+			}	
 			occurrences.put(word, ++ctr);
 		}
 		
-		System.out.println(occurrences);
-		
+		System.out.println(occurrences);	
 		/** 4. Now, our map named 'occurrences' contains the words (key) and the number of times they were used (value) in a format like 'Key = red, Value = 10'.
 		 * 	   Time to fetch the most popular word by comparing the keys and their corresponding values. To do this, we need to traverse the Java Map.
 		 * 	   The easiest way to do this is to use entrySet().**/
 		Integer maxCount = 0;
 		Integer valueOfKey = 0;
 		String  popularWord = "";
-		for(Map.Entry<String, Integer> entry: occurrences.entrySet()) {
-			
+		for(Map.Entry<String, Integer> entry: occurrences.entrySet()) {	
 			valueOfKey = occurrences.get(entry.getKey());
 			if(valueOfKey > maxCount){
 				maxCount = valueOfKey;
 				popularWord = entry.getKey(); 
 			}
-		}
-		
+		}	
 		return popularWord;
 	}
 	//We only want word with lowercase or uppercase letters
 	private static boolean isValidWord(String str) {
 		return str.matches("^[a-zA-Z]*$");
 	}
-
 }
